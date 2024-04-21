@@ -121,7 +121,7 @@ LOGIN_URL = 'Login'
 STATIC_URL = '/static/'
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join( BASE_DIR, 'KITTEN/images')
-STATIC_ROOT = os.path.join(BASE_DIR, 'KITTEN/static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 # Default primary key field type
