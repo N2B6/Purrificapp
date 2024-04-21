@@ -1,0 +1,92 @@
+{%extends 'base.html'%}
+{% block content %}
+{%load static%}
+
+
+
+<h1 align = "center">Terms and Conditions of Use</h1>
+
+These terms and conditions ("Terms") govern your use of the Puriffic pet adoption app ("App") provided by KITTEN. By accessing or using the App, you agree to be bound by these Terms. If you do not agree with these Terms, you may not use the App.
+
+1. Eligibility
+
+You must be at least 18 years old to use the App. By using the App, you represent and warrant that you are at least 18 years old and have the legal capacity to enter into these Terms.
+
+2. Use of the App
+
+(a) The App is provided for the purpose of facilitating pet adoption services. You agree to use the App only for lawful purposes and in accordance with these Terms.
+
+(b) You agree not to use the App in any manner that could damage, disable, overburden, or impair the Company's servers or networks, or interfere with any other party's use of the App.
+
+(c) You agree not to attempt to gain unauthorized access to any part of the App or any other systems or networks connected to the App.
+
+3. Account Registration
+
+(a) In order to access certain features of the App, you may be required to create an account. You agree to provide accurate, current, and complete information during the registration process and to update such information to keep it accurate, current, and complete.
+
+(b) You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. You agree to notify the Company immediately of any unauthorized use of your account or any other breach of security.
+
+4. Pet Adoption
+
+(a) The App allows users to view listings of pets available for adoption from shelters and rescue organizations. The Company does not own or operate these shelters or rescue organizations and is not responsible for the accuracy or completeness of the information provided in the listings.
+
+(b) The adoption of a pet is subject to the terms and conditions of the shelter or rescue organization from which the pet is adopted. You agree to comply with all such terms and conditions.
+
+(c) The Company does not guarantee the availability of any specific pet for adoption or the success of any adoption application.
+
+5. Intellectual Property
+
+(a) The App and its entire contents, features, and functionality (including but not limited to all information, software, text, displays, images, video, and audio) are owned by the Company or its licensors and are protected by copyright, trademark, and other intellectual property laws.
+
+(b) You may not modify, reproduce, distribute, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any of the material on the App without the prior written consent of the Company.
+
+6. Privacy
+
+(a) Your use of the App is subject to the Company's Privacy Policy, which is incorporated into these Terms by reference. By using the App, you consent to the collection and use of your information in accordance with the Privacy Policy.
+
+7. Disclaimers
+
+(a) THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED. TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, THE COMPANY DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT OF INTELLECTUAL PROPERTY RIGHTS.
+
+(b) THE COMPANY DOES NOT WARRANT THAT THE APP WILL BE UNINTERRUPTED OR ERROR-FREE, THAT DEFECTS WILL BE CORRECTED, OR THAT THE APP OR THE SERVERS THAT MAKE IT AVAILABLE ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS.
+
+8. Limitation of Liability
+
+(a) IN NO EVENT SHALL THE COMPANY, ITS OFFICERS, DIRECTORS, EMPLOYEES, OR AGENTS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, WHETHER ARISING UNDER CONTRACT, WARRANTY, TORT, OR ANY OTHER LEGAL THEORY, INCLUDING BUT NOT LIMITED TO DAMAGES FOR LOSS OF PROFITS, USE, DATA, OR OTHER INTANGIBLE LOSSES, EVEN IF THE COMPANY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+9. Indemnification
+
+(a) You agree to indemnify, defend, and hold harmless the Company, its officers, directors, employees, and agents from and against any and all claims, liabilities, damages, losses, costs, expenses, or fees (including reasonable attorneys' fees) arising out of or relating to your use of the App, your violation of these Terms, or your violation of any rights of a third party.
+
+10. Governing Law
+
+(a) These Terms shall be governed by and construed in accordance with the laws of [Your Jurisdiction], without giving effect to any choice or conflict of law provision or rule.
+
+11. Changes to Terms
+
+(a) The Company reserves the right to modify or revise these Terms at any time in its sole discretion. Any changes will be effective immediately upon posting the revised Terms on the App. Your continued use of the App following the posting of any changes constitutes acceptance of those changes.
+
+12. Contact Information
+
+(a) If you have any questions about these Terms, please contact us at: purrific@gmail.com.
+
+<!-- Footer-->
+<footer class="bg-dark py-4 mt-auto">
+    <div class="container px-5">
+        <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+            <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Purrific 2024</div></div>
+            <div class="col-auto">
+            
+                <a class="link-light small" href="{% url 'Terms' %}">Terms</a>
+                <span class="text-white mx-1">&middot;</span>
+                <a class="link-light small" href="{% url 'Contact'%}">Contact</a>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="https://23202513s3.s3.eu-west-1.amazonaws.com/KITTEN/static/js/scripts.js"></script>
+
+{% endblock %}

@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PURRIFIC Signup</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            background-image: url('https://cdn.pixabay.com/photo/2017/09/25/13/12/dog-2785074_960_720.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .card {
+            margin-top: 60px;
+            margin-left: -250px;
+            width: 600px; /* Adjusted width */
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.7); /* Translucent white background */
+        }
+        .card-header {
+            background-color: rgba(255, 255, 255, 0.7); /* Translucent white background */
+            border-bottom: none;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 24px;
+            color: #333;
+            padding: 30px;
+        }
+        .card-body {
+            background-color: rgba(255, 255, 255, 0.3); /* Translucent white background */
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            padding: 30px;
+        }
+        .form-control {
+            border-radius: 10px;
+        }
+        .btn-primary {
+            border-radius: 10px;
+            padding: 10px 25px;
+            font-weight: bold;
+            background-color: #FF6B6B;
+            border-color: #FF6B6B;
+        }
+        .btn-primary:hover {
+            background-color: #FF4D4D;
+            border-color: #FF4D4D;
+        }
+        .btn-primary:focus {
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        PURRIFIC Signup
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="{% url 'Signup' %}">
+                            {% csrf_token %}
+                            <!-- First column for username, email, password -->
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-control" id="username" name="username" required>
+                                        {% if form.errors.username %}
+                                        <small class="text-danger">{{ form.errors.username }}</small>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                        {% if form.errors.email %}
+                                        <small class="text-danger">{{ form.errors.email }}</small>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="password1">Password</label>
+                                        <input type="password" class="form-control" id="password1" name="password1" required>
+                                        {% if form.errors.password1 %}
+                                        <small class="text-danger">{{ form.errors.password1 }}</small>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="password2">Confirm Password</label>
+                                        <input type="password" class="form-control" id="password2" name="password2" required>
+                                        {% if form.errors.password2 %}
+                                        <small class="text-danger">{{ form.errors.password2 }}</small>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Second column for first name, last name, date of birth -->
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="first_name">First Name</label>
+                                        <input type="text" class="form-control" id="first_name" name="first_name" required>
+                                        {% if form.errors.first_name %}
+                                        <small class="text-danger">{{ form.errors.first_name }}</small>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="last_name">Last Name</label>
+                                        <input type="text" class="form-control" id="last_name" name="last_name" required>
+                                        {% if form.errors.last_name %}
+                                        <small class="text-danger">{{ form.errors.last_name }}</small>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Date of Birth</label>
+                                <input type="date" class="form-control" id="dob" name="dob" required>
+                                {% if form.errors.dob %}
+                                <small class="text-danger">{{ form.errors.dob }}</small>
+                                {% endif %}
+                            </div>
+                            <!-- Third column for address, phone number -->
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <input type="text" class="form-control" id="address" name="address" required>
+                                        {% if form.errors.address %}
+                                        <small class="text-danger">{{ form.errors.address }}</small>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="phone_number">Phone Number</label>
+                                        <input type="tel" class="form-control" id="phone_number" name="phone_number" required>
+                                        {% if form.errors.phone_number %}
+                                        <small class="text-danger">{{ form.errors.phone_number }}</small>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Signup</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="https://23202513s3.s3.eu-west-1.amazonaws.com/KITTEN/static/js/scripts.js"></script>
+</body>
+</html>
+
+{% endblock %}
