@@ -118,7 +118,7 @@ USE_TZ = True
 
 AUTH_USER_MODEL = 'KITTEN.KittenUser'
 LOGIN_URL = 'Login'
-STATIC_URL = '/static/'
+STATIC_URL = 'https://23202513s3.s3.eu-west-1.amazonaws.com/KITTEN/static/'
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join( BASE_DIR, 'KITTEN/images')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
