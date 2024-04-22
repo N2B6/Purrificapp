@@ -10,10 +10,5 @@ phases:
 
     build:
         commands:
-            - echo "Build phase: Building project"
+            - pytest  # Run Python tests using pytest
       # Add any build commands here, such as compiling code, running tests, etc.
-
-    post_build:
-        commands:
-            - echo "Post-build phase: Deploying to Elastic Beanstalk"
-      # Add deployment commands here, such as deploying to S3, ECS, or Lambda
