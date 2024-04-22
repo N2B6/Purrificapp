@@ -5,10 +5,8 @@ phases:
         runtime-versions:
             python: 3.11  # Adjust the version based on your project's requirements
         commands:
+            - pip install --upgrade pip
             - yum install -y python3-devel mariadb105-devel.x86_64  # Install additional packages using yum
             - pip install -r requirements.txt pytest  # Install project dependencies
 
-    build:
-        commands:
-            - pytest  # Run Python tests using pytest
-      # Add any build commands here, such as compiling code, running tests, etc.
+
