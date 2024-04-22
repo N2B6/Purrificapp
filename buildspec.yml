@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      python: 3.8  # Adjust the version based on your project's requirements
+      python: 3.11  # Adjust the version based on your project's requirements
     commands:
       - echo "Install phase: Installing dependencies"
       - yum install -y python3-devel mariadb105-devel.x86_64  # Install additional packages using yum
