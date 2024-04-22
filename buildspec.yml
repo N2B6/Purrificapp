@@ -1,20 +1,20 @@
 version: 0.2
 
 phases:
-  install:
-    runtime-versions:
-      python: 3.11  # Adjust the version based on your project's requirements
-    commands:
-      - echo "Install phase: Installing dependencies"
-      - yum install -y python3-devel mariadb105-devel.x86_64  # Install additional packages using yum
-      - pip install -r requirements.txt  # Install project dependencies
+    install:
+        runtime-versions:
+            python: 3.11  # Adjust the version based on your project's requirements
+        commands:
+            - echo "Install phase: Installing dependencies"
+            - yum install -y python3-devel mariadb105-devel.x86_64  # Install additional packages using yum
+            - pip install -r requirements.txt  # Install project dependencies
 
-  build:
-    commands:
-      - echo "Build phase: Building project"
+    build:
+        commands:
+            - echo "Build phase: Building project"
       # Add any build commands here, such as compiling code, running tests, etc.
 
-  post_build:
-    commands:
-      - echo "Post-build phase: Deploying to Elastic Beanstalk"
+    post_build:
+        commands:
+            - echo "Post-build phase: Deploying to Elastic Beanstalk"
       # Add deployment commands here, such as deploying to S3, ECS, or Lambda
