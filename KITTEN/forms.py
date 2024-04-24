@@ -41,5 +41,8 @@ class PetForm(forms.ModelForm):
         fields = ['name', 'pet_type', 'age', 'breed', 'description', 'image','owner']  # Replace with your specific fields
         exclude = ['owner']
     
-    
+class PetUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Pet
+        fields = ['name', 'pet_type', 'age', 'breed', 'description', 'image']
     

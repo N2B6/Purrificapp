@@ -24,5 +24,6 @@ urlpatterns = [
     path('events/', views.events, name='Events'),
     path('donations/', views.donations, name='Donations'),
     path('search/', views.search_pets, name='search_pets'),
+    path('pet/update/<int:pet_id>/', views.update_pet, name='update_pet'),
  ]
 

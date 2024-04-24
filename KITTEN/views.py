@@ -4,7 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import PetForm
+from .forms import PetForm,PetUpdateForm
 from django import forms
 from .models import Pet , Event, Contact, KittenUser
 from django.http import HttpResponseRedirect
@@ -74,6 +74,16 @@ def mylistings(request):
     user_pet_listings = Pet.objects.filter(owner=request.user)
     return render(request, 'mylistings.html', {'user_pet_listings': user_pet_listings})
 
+def update_pet(request, pet_id):
+    pet = get_object_or_404(Pet, pk=pet_id)
+    if request.method == 'POST':
+        form = PetForm(request.POST, request.FILES, instance=pet)
+        if form.is_valid():
+            form.save()
+            return redirect('My Listings')  # Redirect to the listings page after updating
+    else:
+        form = PetForm(instance=pet)
+    return render(request, 'update_pet.html', {'form': form, 'pet': pet})
 
 # def newuserform(request):
 #     return render (request, 'forms/newuserform.html')

@@ -60,6 +60,7 @@
                                 </div><!--/blog_post_metadata--><!--blog_post_readmore-->
                                 <form action="{% url 'delete_pet' i.id %}" method="POST" id="deleteForm">
                                 {% csrf_token %}
+                                <a href="{% url 'update_pet' i.id %}" class="u-blog-control u-border-2 u-border-grey-dark-1 u-btn u-btn-outline-dark u-button-style u-btn-1 btn-lg px-4">Update</a>
                                 <button type="submit" class="u-blog-control u-border-2 u-border-grey-dark-1 u-btn u-btn-outline-dark u-button-style u-btn-1 btn-lg px-4" onclick="return confirmDelete()">Delete</a></button>
                                 <div class="u-border-3 u-border-palette-2-dark-1 u-line u-line-horizontal u-line-1"></div>
                                 </form>
