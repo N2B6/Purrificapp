@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-%#ki+!uhu69)7j8sl@slpp9(=bdlz$e4iwgsv_(rxotvdp-59t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://b2779d0170634a00822fc3e1d46e2ab0.vfs.cloud9.eu-west-1.amazonaws.com']
+ALLOWED_HOSTS = ['purrificapp.onrender.com','127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://purrificapp.onrender.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -129,34 +129,25 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'KITTEN/static')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR/'db.sqlite3',
+    }
+}
 
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'testpf',
+#         'NAME': 'dbdog',
 #         'USER': 'x23202513',
 #         'PASSWORD': '23202513',
-#         'HOST': 'testpf.chwlezgyi7rm.eu-west-1.rds.amazonaws.com',
-#         'PORT': '3306',
+#         'HOST': 'dogsdb.chwlezgyi7rm.eu-west-1.rds.amazonaws.com',
+#         'PORT': '8080',
 #     }
     
 
-# }
-
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dbdog',
-        'USER': 'x23202513',
-        'PASSWORD': '23202513',
-        'HOST': 'dogsdb.chwlezgyi7rm.eu-west-1.rds.amazonaws.com',
-        'PORT': '8080',
-    }
-    
-
- }
+#  }
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_STORAGE_BUCKET_NAME = '23202513s3'
