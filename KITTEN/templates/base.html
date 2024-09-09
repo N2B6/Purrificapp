@@ -8,11 +8,11 @@
         <meta name="author" content="" />
         <title>PURRIFIC</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="https://23202513s3.s3.eu-west-1.amazonaws.com/KITTEN/static/assets/logo.png" />
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/logo.png' %}" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="https://23202513s3.s3.eu-west-1.amazonaws.com/KITTEN/static/css/styles.css" rel="stylesheet" />
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
         
     </head>
     <body class="d-flex flex-column h-100">
@@ -20,7 +20,7 @@
             <!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
                 <div class="container px-5">
-                    <a class="navbar-brand" href="{% url 'Home' %}"> <img src="https://23202513s3.s3.eu-west-1.amazonaws.com/KITTEN/static/assets/logo.png" width="30" height="30"> PURRIFIC</a>
+                    <a class="navbar-brand" href="{% url 'Home' %}"> <img src="{% static 'assets/logo.png' %}" width="30" height="30"> PURRIFIC</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
