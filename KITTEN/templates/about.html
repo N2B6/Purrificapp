@@ -1,112 +1,168 @@
-{%extends 'base.html'%}
+{% extends 'base.html' %}
 {% block content %}
-{%load static%}
+{% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-   
-            <!-- Header-->
-            <header class="py-5">
-                <div class="container px-5">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8 col-xxl-6">
-                            <div class="text-center my-5">
-                                <h1 class="fw-bolder mb-3">Welcome to Puriffic - your ultimate destination for pet adoption!</h1>
-                                <p class="lead fw-normal text-muted mb-4">At Puriffic, we believe that every pet deserves a loving forever home, and we're dedicated to making that happen. Our mission is to connect prospective pet parents with their perfect furry, feathered, or scaly companions while promoting responsible pet ownership and animal welfare.</p>
-                                <a class="btn btn-primary btn-lg" href="#scroll-target">Read our story</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
-            <!-- About section one-->
-            <section class="py-5 bg-light" id="scroll-target">
-                <div class="container px-5 my-5">
-                    <div class="row gx-5 align-items-center">
-                        <div class="col-lg-6"><img class="img-fluid rounded mb-5 mb-lg-0" src="{%static 'images/aboutusimage1.jpg' %}" alt="..." /></div>
-                        <div class="col-lg-6">
-                            <h2 class="fw-bolder">Our founding</h2>
-                            <p class="lead fw-normal text-muted mb-0">Puriffic was founded in with a shared vision of making a positive impact on pet adoption and animal welfare.
+<style>
+/* Dynamic Background */
+body {
+    background: linear-gradient(-45deg, #FFE5E5, #FFF0F5, #F0F8FF, #E6E6FA) !important;
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    min-height: 100vh;
+}
 
-                                Driven by our love for animals and our desire to create meaningful change, we set out to develop a platform that would revolutionize the way people find and adopt pets. With a focus on simplicity, accessibility, and compassion, we embarked on a journey to build Puriffic from the ground up.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- About section two-->
-            <section class="py-5">
-                <div class="container px-5 my-5">
-                    <div class="row gx-5 align-items-center">
-                        <div class="col-lg-6 order-first order-lg-last"><img class="img-fluid rounded mb-5 mb-lg-0" src="{%static 'images/aboutusimage2.jpg' %}" alt="..." /></div>
-                        <div class="col-lg-6">
-                            <h2 class="fw-bolder">Growth &amp; beyond</h2>
-                            <p class="lead fw-normal text-muted mb-0">With each passing day, we are inspired by the countless success stories of pets finding their forever homes through Puriffic. From heartwarming adoption tales to joyful reunions, these stories fuel our passion and drive us to do more for pets in need.
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
-                                Looking ahead, our vision for Puriffic extends far beyond just facilitating pet adoptions. We aspire to become a global leader in animal welfare advocacy, leveraging our platform to raise awareness, promote education, and drive meaningful change for animals everywhere.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Team members section-->
-            {% comment %} <section class="py-5 bg-light">
-                <div class="container px-5 my-5">
-                    <div class="text-center">
-                        <h2 class="fw-bolder">Our team</h2>
-                        <p class="lead fw-normal text-muted mb-5">Dedicated to quality and your success</p>
-                    </div>
-                    <div class="row gx-5 row-cols-1 row-cols-sm-2 row-cols-xl-4 justify-content-center">
-                        <div class="col mb-5 mb-5 mb-xl-0">
-                            <div class="text-center">
-                                <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d" alt="..." />
-                                <h5 class="fw-bolder">Ibbie Eckart</h5>
-                                <div class="fst-italic text-muted">Founder &amp; CEO</div>
-                            </div>
-                        </div>
-                        <div class="col mb-5 mb-5 mb-xl-0">
-                            <div class="text-center">
-                                <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d" alt="..." />
-                                <h5 class="fw-bolder">Arden Vasek</h5>
-                                <div class="fst-italic text-muted">CFO</div>
-                            </div>
-                        </div>
-                        <div class="col mb-5 mb-5 mb-sm-0">
-                            <div class="text-center">
-                                <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d" alt="..." />
-                                <h5 class="fw-bolder">Toribio Nerthus</h5>
-                                <div class="fst-italic text-muted">Operations Manager</div>
-                            </div>
-                        </div>
-                        <div class="col mb-5">
-                            <div class="text-center">
-                                <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d" alt="..." />
-                                <h5 class="fw-bolder">Malvina Cilla</h5>
-                                <div class="fst-italic text-muted">CTO</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section> {% endcomment %}
-        </main>
-      <!-- Footer-->
-      <footer class="bg-dark py-4 mt-auto">
-        <div class="container px-5">
-            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Purrific 2024</div></div>
-                <div class="col-auto">
-                
-                    <a class="link-light small" href="{% url 'Terms' %}">Terms</a>
-                    <span class="text-white mx-1">&middot;</span>
-                    <a class="link-light small" href="{% url 'Contact'%}">Contact</a>
+/* Header Styling */
+.header-content {
+    background: rgba(255, 255, 255, 0.9);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    margin-top: 80px;
+}
+
+.header-content:hover {
+    transform: translateY(-5px);
+}
+
+/* Section Styling */
+.section-content {
+    background: rgba(255, 255, 255, 0.85);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 3rem;
+    margin: 2rem 0;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.section-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Image Styling */
+.img-fluid {
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.img-fluid:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Styling */
+.btn-primary {
+    background: linear-gradient(45deg, #4A90E2, #67B26F) !important;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
+}
+
+/* Text Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-text {
+    animation: fadeInUp 0.8s ease forwards;
+}
+</style>
+
+<!-- Header -->
+<header class="py-5">
+    <div class="container px-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-xxl-6">
+                <div class="header-content text-center my-5">
+                    <h1 class="fw-bolder mb-3 animate-text">Welcome to Puriffic - your ultimate destination for pet adoption!</h1>
+                    <p class="lead fw-normal text-muted mb-4 animate-text" style="animation-delay: 0.2s;">At Puriffic, we believe that every pet deserves a loving forever home, and we're dedicated to making that happen.</p>
+                    <a class="btn btn-primary btn-lg animate-text" href="#scroll-target" style="animation-delay: 0.4s;">Read our story</a>
                 </div>
             </div>
         </div>
-    </footer>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="https://23202513s3.s3.eu-west-1.amazonaws.com/KITTEN/static/js/scripts.js"></script>
-      
-    </body>
-</html>
+    </div>
+</header>
+
+<!-- About sections -->
+<section class="py-5" id="scroll-target">
+    <div class="container px-5">
+        <div class="section-content scroll-reveal">
+            <div class="row gx-5 align-items-center">
+                <div class="col-lg-6">
+                    <img class="img-fluid rounded mb-5 mb-lg-0" src="{% static 'images/aboutusimage1.jpg' %}" alt="..." />
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="fw-bolder">Our founding</h2>
+                    <p class="lead fw-normal text-muted mb-0">Puriffic was founded with a shared vision of making a positive impact on pet adoption and animal welfare...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container px-5">
+        <div class="section-content scroll-reveal">
+            <div class="row gx-5 align-items-center">
+                <div class="col-lg-6 order-first order-lg-last">
+                    <img class="img-fluid rounded mb-5 mb-lg-0" src="{% static 'images/aboutusimage2.jpg' %}" alt="..." />
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="fw-bolder">Growth &amp; beyond</h2>
+                    <p class="lead fw-normal text-muted mb-0">With each passing day, we are inspired by the countless success stories...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+    
+    const revealOnScroll = () => {
+        scrollRevealElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (elementTop < windowHeight * 0.85) {
+                element.classList.add('active');
+            }
+        });
+    };
+    
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+});
+</script>
 
 {% endblock %}

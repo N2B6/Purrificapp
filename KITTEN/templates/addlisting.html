@@ -1,21 +1,29 @@
 {% extends 'base.html' %}
-
 {% block content %}
+{% load static %}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Add Listing</title>
-</head>
-<body>
-    <h1>Add Listing ggg</h1>
-    <form method="post" >
-        {% csrf_token %}
-        {{ addpetform.as_p }}
-
-        <button type="submit">Submit</button>
-    </form>
-</body>
-</html>
+<section class="py-5">
+    <div class="container px-5">
+        <!-- Add listing form -->
+        <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+            <div class="text-center mb-5">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-house-heart"></i></div>
+                <h1 class="fw-bolder">Add Your Pet Listing</h1>
+                <p class="lead fw-normal text-muted mb-0">Help find a loving home for a pet</p>
+            </div>
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-8 col-xl-6">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ addpetform.as_p }}
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-lg" type="submit">Submit Listing</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}
