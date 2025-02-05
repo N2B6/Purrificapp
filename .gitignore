@@ -4,3 +4,6 @@
 !.elasticbeanstalk/*.global.yml
 /winenv
 __pycache__/
+KITTEN/management
+# Ignore requirements file
+rq.txt

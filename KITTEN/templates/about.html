@@ -5,10 +5,11 @@
 <style>
 /* Dynamic Background */
 body {
-    background: linear-gradient(-45deg, #FFE5E5, #FFF0F5, #F0F8FF, #E6E6FA) !important;
+    background: linear-gradient(-45deg, #FF9A8B, #FF6B6B, #4ECDC4, #45B7D1);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
     min-height: 100vh;
+    background-attachment: fixed;
 }
 
 @keyframes gradientBG {
@@ -95,6 +96,56 @@ body {
 .animate-text {
     animation: fadeInUp 0.8s ease forwards;
 }
+
+/* Card Styling */
+.card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border: none;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Team Member Cards */
+.team-member {
+    text-align: center;
+    padding: 2rem;
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    border: 3px solid #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Statistics Section */
+.stats {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 3rem 0;
+    margin: 2rem 0;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 </style>
 
 <!-- Header -->
@@ -118,11 +169,12 @@ body {
         <div class="section-content scroll-reveal">
             <div class="row gx-5 align-items-center">
                 <div class="col-lg-6">
-                    <img class="img-fluid rounded mb-5 mb-lg-0" src="{% static 'images/aboutusimage1.jpg' %}" alt="..." />
+                    <img class="img-fluid rounded mb-5 mb-lg-0" src="{% static 'images/aboutusimage1.jpg' %}" alt="Our Founding Story" />
                 </div>
                 <div class="col-lg-6">
-                    <h2 class="fw-bolder">Our founding</h2>
-                    <p class="lead fw-normal text-muted mb-0">Puriffic was founded with a shared vision of making a positive impact on pet adoption and animal welfare...</p>
+                    <h2 class="fw-bolder">Our Founding</h2>
+                    <p class="lead fw-normal text-muted mb-0">Founded in 2023, Purrific emerged from a simple yet powerful vision: to revolutionize cat adoption in Ireland. Our journey began when a group of passionate cat lovers noticed the growing need for a modern, user-friendly platform that could connect loving homes with cats in need.</p>
+                    <p class="lead fw-normal text-muted mt-3">Starting with just a handful of partner shelters in Dublin, we've built a community dedicated to responsible pet adoption, education, and support for both cats and their future families.</p>
                 </div>
             </div>
         </div>
@@ -134,11 +186,107 @@ body {
         <div class="section-content scroll-reveal">
             <div class="row gx-5 align-items-center">
                 <div class="col-lg-6 order-first order-lg-last">
-                    <img class="img-fluid rounded mb-5 mb-lg-0" src="{% static 'images/aboutusimage2.jpg' %}" alt="..." />
+                    <img class="img-fluid rounded mb-5 mb-lg-0" src="{% static 'images/aboutusimage2.jpg' %}" alt="Our Growth Story" />
                 </div>
                 <div class="col-lg-6">
-                    <h2 class="fw-bolder">Growth &amp; beyond</h2>
-                    <p class="lead fw-normal text-muted mb-0">With each passing day, we are inspired by the countless success stories...</p>
+                    <h2 class="fw-bolder">Growth &amp; Beyond</h2>
+                    <p class="lead fw-normal text-muted mb-3">Since our launch, Purrific has achieved remarkable milestones:</p>
+                    <ul class="lead fw-normal text-muted mb-4">
+                        <li>Successfully connected over 500 pets with loving homes</li>
+                        <li>Partnered with 50+ shelters across Ireland</li>
+                        <li>Developed comprehensive adoption screening processes</li>
+                        <li>Created educational resources for new cat parents</li>
+                    </ul>
+                    <p class="lead fw-normal text-muted">Looking ahead, we're expanding our services to include post-adoption support, virtual vet consultations, and a nationwide network of cat-loving communities.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container px-5">
+        <!-- Mission Statement -->
+        <div class="text-center mb-5">
+            <h1 class="fw-bolder animate__animated animate__fadeIn">Our Mission</h1>
+            <p class="lead fw-normal text-muted mb-4">Connecting loving homes with furry friends, one paw at a time.</p>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats rounded-4 mb-5">
+            <div class="row">
+                <div class="col-md-4 stat-item">
+                    <div class="stat-number">500+</div>
+                    <p>Pets Adopted</p>
+                </div>
+                <div class="col-md-4 stat-item">
+                    <div class="stat-number">1000+</div>
+                    <p>Happy Families</div>
+                <div class="col-md-4 stat-item">
+                    <div class="stat-number">50+</div>
+                    <p>Partner Shelters</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Members
+        <div class="row gx-5">
+            <h2 class="text-center mb-5">Our Team</h2>
+            <div class="col-lg-4">
+                <div class="card team-member">
+                    <img src="{% static 'images/team1.jpg' %}" alt="Team Member">
+                    <h3>Dr. Sarah Johnson</h3>
+                    <p class="text-muted">Veterinary Director</p>
+                    <p>15 years experience in feline medicine and passionate about cat welfare.</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card team-member">
+                    <img src="{% static 'images/team2.jpg' %}" alt="Team Member">
+                    <h3>Mike Chen</h3>
+                    <p class="text-muted">Pet Adoption Specialist</p>
+                    <p>Dedicated to matching pets with their perfect forever homes.</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card team-member">
+                    <img src="{% static 'images/team3.jpg' %}" alt="Team Member">
+                    <h3>Emma Williams</h3>
+                    <p class="text-muted">Animal Behavior Specialist</p>
+                    <p>Expert in animal behavior and rehabilitation of rescue pets.</p>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Values Section -->
+        <div class="row gx-5 mt-5">
+            <div class="col-lg-4 mb-5">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3>Our Vision</h3>
+                        <p>To create a world where every pet has a loving home and receives the care they deserve.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-5">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3>Our Values</h3>
+                        <ul>
+                            <li>Compassion for all animals</li>
+                            <li>Responsible adoption practices</li>
+                            <li>Community education</li>
+                            <li>Transparency in operations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-5">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3>Our Impact</h3>
+                        <p>Every adoption changes two lives - the cat's and the adopter's. Join us in making a difference.</p>
+                    </div>
                 </div>
             </div>
         </div>

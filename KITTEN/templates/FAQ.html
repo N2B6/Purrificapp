@@ -1,7 +1,114 @@
-{%extends 'base.html'%}
+{% extends 'base.html' %}
 {% block content %}
-{%load static%}
+{% load static %}
 
+<style>
+/* Dynamic Background */
+body {
+    background: linear-gradient(-45deg, #6a9eda, #8ed1cd, #7eb7e2, #71d6bc);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    min-height: 100vh;
+    background-attachment: fixed;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Modern Card & Container Styling */
+.container {
+    position: relative;
+    z-index: 1;
+}
+
+.bg-light {
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(10px);
+    border: none;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+/* Accordion Styling */
+.accordion-item {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.accordion-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.accordion-button {
+    background: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.accordion-button:not(.collapsed) {
+    background: linear-gradient(45deg, #6a9eda, #8ed1cd);
+    color: white;
+}
+
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem rgba(106, 158, 218, 0.25);
+}
+
+/* Title Animation */
+.fw-bolder {
+    background: linear-gradient(45deg, #2c3e50, #3498db);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: titleGradient 3s ease infinite;
+}
+
+@keyframes titleGradient {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* Social Links */
+.social-links a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #6a9eda, #8ed1cd);
+    color: white;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: translateY(-3px) rotate(8deg);
+    box-shadow: 0 5px 15px rgba(106, 158, 218, 0.4);
+}
+
+/* Contact Card */
+.card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border: none;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+</style>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +116,7 @@
             <!-- Page Content-->
             <section class="py-5">
                 <div class="container px-5 my-5">
-                    <div class="text-center mb-5">
+                    <div class="text-center mb-5 animate__animated animate__fadeIn">
                         <h1 class="fw-bolder">Frequently Asked Questions</h1>
                         <p class="lead fw-normal text-muted mb-0">How can we help you?</p>
                     </div>
@@ -90,10 +197,12 @@
                                                 <a href="#!">purrific@gmail.com</a>
                                             </p>
                                             <div class="h6 fw-bolder">Follow us</div>
-                                            <a class="fs-5 px-2 link-dark" href="#!"><i class="bi-twitter"></i></a>
-                                            <a class="fs-5 px-2 link-dark" href="#!"><i class="bi-facebook"></i></a>
-                                            <a class="fs-5 px-2 link-dark" href="#!"><i class="bi-linkedin"></i></a>
-                                            <a class="fs-5 px-2 link-dark" href="#!"><i class="bi-youtube"></i></a>
+                                            <div class="social-links">
+                                                <a class="fs-5 px-2 link-dark" href="#!"><i class="bi-twitter"></i></a>
+                                                <a class="fs-5 px-2 link-dark" href="#!"><i class="bi-facebook"></i></a>
+                                                <a class="fs-5 px-2 link-dark" href="#!"><i class="bi-linkedin"></i></a>
+                                                <a class="fs-5 px-2 link-dark" href="#!"><i class="bi-youtube"></i></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

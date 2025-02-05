@@ -58,17 +58,20 @@ def search_pets(request):
     else:
         pets = Pet.objects.all()
 
-    # Check if sorting is requested
+    # Sort the queryset based on the selected option
     if sort_by:
         if sort_by == 'age':
-            # Sort pets by age
-            pets = pets.order_by('age')
+            pets = sorted(pets, key=lambda x: x.age)
         elif sort_by == 'latest':
-            # Sort pets by latest posting date
             pets = pets.order_by('-created_at')
+        elif sort_by == 'oldest':
+            pets = pets.order_by('created_at')
 
-    return render(request, 'pets.html', {'pets': pets})
-
+    return render(request, 'pets.html', {
+        'pets': pets,
+        'query': query,
+        'sort_by': sort_by
+    })
 
 def mylistings(request):
     user_pet_listings = Pet.objects.filter(owner=request.user)
@@ -306,11 +309,44 @@ def donations(request):
     else:
         return render(request, 'donations.html')
 
+from django.shortcuts import render
+from .models import Pet
+from .petsearch import filter_pets_by_type
 
+def pets_view(request, pet_type=None):
+    """
+    A unified view to handle all pet categories
+    
+    Args:
+        request: The HTTP request
+        pet_type: Optional pet type to filter by (dog, cat, bird, etc.)
+    """
+    # Get all pets or filter by type if specified
+    if pet_type:
+        pets = filter_pets_by_type(pet_type)
+    else:
+        pets = Pet.objects.all().order_by('-created_at')
 
+    # Pass category-specific title and description
+    context = {
+        'pets': pets,
+        'category': {
+            'title': pet_type.upper() if pet_type else 'ALL PETS',
+            'description': get_category_description(pet_type)
+        }
+    }
+    
+    return render(request, 'pets.html', context)
 
-
-
-
-
-
+def get_category_description(pet_type):
+    """Helper function to get category descriptions"""
+    descriptions = {
+        'dog': 'A loyal and affectionate companion',
+        'cat': 'Independent nature and graceful demeanor, a charming companion',
+        'bird': 'Colorful plumage and melodic songs bring joy and companionship',
+        'fish': 'Bringing serenity and elegance to any aquatic environment',
+        'rodent': 'Adorable antics and compact size, delightful pocket pets',
+        'exotic': 'Unique characteristics and specialized care needs',
+        None: 'Find your perfect companion'
+    }
+    return descriptions.get(pet_type, '')

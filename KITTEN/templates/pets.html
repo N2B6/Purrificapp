@@ -37,10 +37,12 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <select name="sort_by" class="form-select custom-select">
+                    <label for="sort_by" class="visually-hidden">Sort by</label>
+                    <select id="sort_by" name="sort_by" class="form-select custom-select" aria-label="Sort pets by">
                         <option value="">Sort by...</option>
                         <option value="age" {% if request.GET.sort_by == 'age' %}selected{% endif %}>Age</option>
                         <option value="latest" {% if request.GET.sort_by == 'latest' %}selected{% endif %}>Latest</option>
+                        <option value="oldest" {% if request.GET.sort_by == 'oldest' %}selected{% endif %}>Oldest</option>
                     </select>
                 </div>
                 <div class="col-md-2">
@@ -78,10 +80,10 @@
                                     <i class="bi bi-calendar3"></i>
                                     {{ pet.age }} months
                                 </span>
-                                <span class="detail-item">
+                                <!-- <span class="detail-item">
                                     <i class="bi bi-geo-alt"></i>
                                     {{ pet.location }}
-                                </span>
+                                </span> -->
                             </div>
                         </div>
                     </div>
@@ -107,38 +109,96 @@
     </div>
 </section>
 
+<div class="wave-container">
+    <div class="wave"></div>
+</div>
+
 <style>
+/* Dynamic Background - Place at top to take precedence */
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(-45deg, #4B79A1, #283E51, #23a6d5, #23d5ab) !important;
+    background-size: 400% 400% !important;
+    animation: gradientBG 15s ease infinite !important;
+    min-height: 100vh;
+    background-attachment: fixed;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Remove any conflicting background styles */
+.header-section {
+    background: transparent;
+}
+
+/* Wave Animation */
+.wave-container {
+    position: absolute;
+    width: 100%;
+    height: 150px;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.wave {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='0.1' d='M0,96L48,122.7C96,149,192,203,288,224C384,245,480,235,576,202.7C672,171,768,117,864,117.3C960,117,1056,171,1152,186.7C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    animation: wave 15s linear infinite;
+}
+
 /* Updated Background Styles */
 body {
-    background: linear-gradient(135deg, #f0f7ff 0%, #e1eeff 50%, #d4e5ff 100%);
+    background: linear-gradient(135deg, #28578c 0%, #6c91c2 50%, #05275a 100%);
     min-height: 100vh;
     background-attachment: fixed;  /* This prevents background from scrolling */
 }
 
 /* Updated Card Styling to complement new background */
 .modern-card {
-    background: rgba(255, 255, 255, 0.95);  /* Slightly more opaque for better contrast */
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
 }
 
 /* Updated Search Box Styling */
 .search-box {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .custom-input, .custom-select {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.custom-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 /* Updated Button Gradients */
 .btn-gradient {
-    background: linear-gradient(45deg, #1976D2, #2196F3);
+    background: linear-gradient(45deg, #4B79A1, #23d5ab);
+    border: none;
+    color: white;
 }
 
 .btn-gradient:hover {
-    background: linear-gradient(45deg, #1565C0, #1976D2);
+    background: linear-gradient(45deg, #23d5ab, #4B79A1);
+    transform: translateY(-2px);
 }
 
 .btn-gradient-secondary {
@@ -151,8 +211,9 @@ body {
 
 /* Updated Text Gradient */
 .text-gradient {
-    background: linear-gradient(45deg, #1565C0, #42A5F6);
+    background: linear-gradient(45deg, #ffffff, #23d5ab);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -315,6 +376,37 @@ body {
         gap: 10px;
         align-items: center;
     }
+}
+.custom-select {
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: #333 !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 8px !important;
+    padding: 0.375rem 2.25rem 0.375rem 0.75rem !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 0.75rem center !important;
+    background-size: 16px 12px !important;
+}
+
+.custom-select:focus {
+    border-color: rgba(25, 118, 210, 0.5) !important;
+    box-shadow: 0 0 0 0.25rem rgba(25, 118, 210, 0.25) !important;
+    outline: 0 !important;
+}
+
+.custom-select option {
+    background: white !important;
+    color: #333 !important;
+    padding: 10px !important;
+}
+
+.custom-select:hover {
+    cursor: pointer !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
 }
 </style>
 
