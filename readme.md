@@ -1,4 +1,4 @@
-# Purrfect Dog - Pet Management Web Application
+# Purrific - Pet Management Web Application
 
 <img src="home.png" alt="Pet Management App" width="600">
 
