@@ -13,23 +13,31 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Base directory setup
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# =====================
+# Core Django Settings
+# =====================
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-%#ki+!uhu69)7j8sl@slpp9(=bdlz$e4iwgsv_(rxotvdp-59t')
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+ROOT_URLCONF = 'CAT.urls'
+WSGI_APPLICATION = 'CAT.wsgi.application'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'KITTEN.KittenUser'
+LOGIN_URL = 'Login'
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
+# =====================
+# Deployment Environment
+# =====================
+DEPLOYMENT_ENV = os.environ.get('DEPLOYMENT_ENV', 'RENDER')
+# change DEPLOYMENT_ENV to AWS if you are using AWS 
+# and fill in the aws s3 and rds credentials
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-%#ki+!uhu69)7j8sl@slpp9(=bdlz$e4iwgsv_(rxotvdp-59t'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['purrificapp.onrender.com','127.0.0.1']
-CSRF_TRUSTED_ORIGINS = ['https://purrificapp.onrender.com']
-
-# Application definition
+# =====================
+# Application Definition
+# =====================
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,12 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'KITTEN.apps.KittenConfig',
-    'storages', #for aws s3   
-    
-    
-    
-    
-  
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -56,12 +59,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'CAT.urls'
-
+# =====================
+# Templates
+# =====================
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ os.path.join(BASE_DIR, 'templates') ],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,90 +78,97 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'CAT.wsgi.application'
+# =====================
+# Database Configuration
+# =====================
+if DEPLOYMENT_ENV == 'AWS':
+    # AWS Database Configuration
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.environ.get('AWS_DB_NAME', 'your-aws-db-name'),
+            'USER': os.environ.get('AWS_DB_USER', 'your-aws-db-user'),
+            'PASSWORD': os.environ.get('AWS_DB_PASSWORD', ''),
+            'HOST': os.environ.get('AWS_DB_HOST', 'your-rds-endpoint.amazonaws.com'),
+            'PORT': os.environ.get('AWS_DB_PORT', '3306'),  # Default MySQL port
+        }
+    }
 
+    # AWS S3 Storage Configuration
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+#   if you have IAM permissions, assigning a role to your EC2 instance is prefferable 
+#   and no need to set AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
 
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+    
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_BUCKET_NAME', 'your-s3-bucket-name')
+    AWS_S3_REGION_NAME = os.environ.get('AWS_REGION', 'your-aws-region')
+    AWS_S3_FILE_OVERWRITE = False
+    AWS_DEFAULT_ACL = None
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com'
+else:
+    # Render/Local Database
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
+# =====================
+# Storage Configuration
+# =====================
+if DEPLOYMENT_ENV == 'AWS':
+    # AWS S3 Storage
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_BUCKET_NAME', '23202513s3')
+    AWS_S3_REGION_NAME = os.environ.get('AWS_REGION', 'eu-west-1')
+    AWS_S3_FILE_OVERWRITE = False
+    AWS_DEFAULT_ACL = None
+else:
+    # Local Storage
+    STATIC_URL = '/static/'
+    MEDIA_URL = '/images/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'KITTEN/images')
+    STATIC_ROOT = os.path.join(BASE_DIR, 'KITTEN/static')
 
+# =====================
+# Security Settings
+# =====================
+ALLOWED_HOSTS = ['purrificapp.onrender.com', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://purrificapp.onrender.com']
 
-# Password validation
-# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
+if DEPLOYMENT_ENV == 'AWS':
+    ALLOWED_HOSTS += ['your-aws-domain.com']
+    CSRF_TRUSTED_ORIGINS += ['https://*.amazonaws.com']
 
+# =====================
+# Password Validation
+# =====================
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-
+# =====================
 # Internationalization
-# https://docs.djangoproject.com/en/5.0/topics/i18n/
-
+# =====================
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-AUTH_USER_MODEL = 'KITTEN.KittenUser'
-LOGIN_URL = 'Login'
-STATIC_URL = '/static/'
-MEDIA_URL = '/images/'
-MEDIA_ROOT = os.path.join( BASE_DIR, 'KITTEN/images')
-STATIC_ROOT = os.path.join(BASE_DIR, 'KITTEN/static')
-
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR/'db.sqlite3',
-    }
-}
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'dbdog',
-#         'USER': 'x23202513',
-#         'PASSWORD': '23202513',
-#         'HOST': 'dogsdb.chwlezgyi7rm.eu-west-1.rds.amazonaws.com',
-#         'PORT': '8080',
-#     }
-    
-
-#  }
-
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# AWS_STORAGE_BUCKET_NAME = '23202513s3'
-# AWS_S3_REGION_NAME = 'eu-west-1'
-# # AWS_ACCESS_KEY_ID = 'ASIATUYJP7SUARE322G5'
-# # AWS_SECRET_ACCESS_KEY = 'NMv8dfETtoLRKjumkDqtH+bZCVtzFUn2g4zH0cYu'
-# # AWS_SESSION_TOKEN = 'IQoJb3JpZ2luX2VjENv//////////wEaCXVzLWVhc3QtMSJHMEUCIQDS68P+4BrI+eTk9O9n3c0ttqhE1pSRZUiQz13K0DRLhwIgMUafYl1PXcdgRh2VJ5HYxwpsEdPmkp2i8AHmyPeGRwkq/wMIIxADGgwyNTA3Mzg2Mzc5OTIiDP239cN8xa9NvgvK5SrcAxMfgUqQimuP3Qiag9LlZWGs3JASfmfa0LoZEBUTVEhIzMqKO+eireFQUYUeL4D/z5DbL3q13yzBnjyIg9+JFMGAzdVrQQeGNprD6xmuEMkERPqFyYp3pHjRhNu89x2kXzRgfmFlCUFYp8Mg8Xlrl1R9LK7aJmk/Vdjy5Ucv7AmR/noP/DK87J0w3FbevFSlOAxU+TGm+0/VATtiUpyHW/HfzFPlK8wdDHsKcU/+bAdN/0TV8OVR0lsJgjgxmxoxRXODbwCNhNZ02GcZ0NAP4Lz/ZPjv8OlO3wAkZWaklITPoYPM6VUMUAorO4xXmVip5PjQg5A2pbwrEzbgkLBy6Ov/K5z0n2RZxIjp77NikqnK4XxqWlph0dZxRNfDPhudhwhbDb4PXQBorJzCu+7x9LR3AFC2GV5p2lnNizTL3syBsIr6GVJAiiJfyE36EwB8YdK2hM7d8GHHNT3myQOVHakCIrGORsnitowMahS+dogSIrYZw0/gUcJY4Qdab2IyyGX/MlAXFSSxyuJSX+vMj1vusj7JF/rjKkyQXD87yGFuoZpiOVl/ED2/RtZ1nUUKZL54M3Bdk3sw2tKSpyQHR+vcD0LoImVkRjCOb0Zp6IjQi9lE3lj3DlgAUds/MNzFjLEGOqYB+Wd+uApMyMt0p2llmcxGlvHKdqdaeMsTwDwgDvo5gitKO9FvAcUiDVilatxAduYoiBuhuglVcWWRk77I6TBf96jvy6gzjx+CEEOR7ya8WF3MmXFMTcNJV4ZOZinbwc/vwwrCxb+5mqqbw1uwpczn5RStW9puIa2LzF6jCaSWrXQyBvWepnoKub2n/7kXHDQQofxeoK85AJAg8r72TFsr/o2qlqbJPA=='
-# AWS_S3_FILE_OVERWRITE = False
-# AWS_DEFAULT_ACL = None
-# STATIC_FILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 
