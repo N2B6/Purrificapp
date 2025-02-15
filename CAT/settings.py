@@ -95,8 +95,9 @@ if DEPLOYMENT_ENV == 'AWS':
     }
 
     # AWS S3 Storage Configuration
-    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    # AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    # AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    
 #   if you have IAM permissions, assigning a role to your EC2 instance is prefferable 
 #   and no need to set AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
 
